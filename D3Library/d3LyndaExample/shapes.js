@@ -1,6 +1,9 @@
 var dataArray =[5,11,18];
 var dataDays = ['Mon','Wed','Fri'];
 
+var rainbow = d3.scaleSequential(d3.interpolateRainbow).domain([0,10]);
+var rainbow2 = d3.scaleSequential(d3.interpolateRainbow).domain([0,3]);
+
 //var x = d3.scaleOrdinal()
 //        .domain(dataDays)
 //        .range([25, 85, 145]);
@@ -19,7 +22,7 @@ svg.selectAll("rect")
     .enter().append("rect")
                 .attr("height",function(d,i){return d*15;})
                 .attr("width","50")
-                .attr("fill","pink")
+                .attr("fill",function(d,i){return rainbow(i);})
                 .attr("x",function(d,i){return 60*i;})
                 .attr("y",function(d,i){return 300-(d*15);});
 
@@ -35,6 +38,7 @@ svg.selectAll("circle.first")
     .data(dataArray)
     .enter().append("circle")
             .attr("class","first")
+            .attr("fill",function(d,i){return rainbow2(i);})
             .attr("cx",function(d,i){newCenter = newCenter + lastRadio + 20 + d*3;console.log(newCenter); lastRadio = d*3; return newCenter;}) 
             .attr("cy","100")
             .attr("r",function(d,i){return d*3;});
