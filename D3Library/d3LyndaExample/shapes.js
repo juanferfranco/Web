@@ -1,4 +1,17 @@
 var dataArray =[5,11,18];
+var dataDays = ['Mon','Wed','Fri'];
+
+//var x = d3.scaleOrdinal()
+//        .domain(dataDays)
+//        .range([25, 85, 145]);
+
+var x = d3.scaleBand()
+        .domain(dataDays)
+        .range([0, 170])
+        .paddingInner(0.1176);
+
+
+var xAxis = d3.axisBottom(x);
 
 var svg = d3.select("body").append("svg").attr("height","100%").attr("width","100%");
 svg.selectAll("rect")
@@ -10,6 +23,10 @@ svg.selectAll("rect")
                 .attr("x",function(d,i){return 60*i;})
                 .attr("y",function(d,i){return 300-(d*15);});
 
+svg.append("g")
+        .attr("class","x axis hidden")
+        .attr("transform","translate(0,300)")
+        .call(xAxis);  
 
 var newCenter = 300;
 var lastRadio = 0;
