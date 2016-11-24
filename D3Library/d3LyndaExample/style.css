@@ -15,3 +15,12 @@ g.group0 circle
     fill: none;
     stroke-width: 2px;
 }
+
+g.tick line{
+    stroke: blue;
+}
+
+g.tick text{
+    font-size: 12px;
+    fill: purple;
+}
